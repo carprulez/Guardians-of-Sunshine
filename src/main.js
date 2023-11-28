@@ -1,15 +1,16 @@
 // Carter Gruebel
 // Guardians of Sunshine
+// Major components: Particle effects, arcade physics, text objects, animation manager, cameras
 
 let config = {
     type: Phaser.AUTO,
-    width: 1080,
-    height: 640,
+    width: 840,
+    height: 420,
     scene: [ Menu, Play, Instructions ],
     physics: {
         default: 'arcade',
         arcade: {
-            debug: false
+            debug: true
         }
     },
     render: { 
@@ -17,3 +18,10 @@ let config = {
     }
 }
 let game = new Phaser.Game(config);
+
+// define globals
+let centerX = game.config.width/2;
+let centerY = game.config.height/2;
+let w = game.config.width;
+let h = game.config.height;
+let keyUP, keyDOWN, keyLEFT, keyRIGHT, keySpace;
