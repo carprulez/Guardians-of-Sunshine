@@ -1,7 +1,7 @@
 // Play scene
 class Play extends Phaser.Scene {
     constructor() {
-        super("playScene")
+        super("oneScene")
     }
 
     create() {
