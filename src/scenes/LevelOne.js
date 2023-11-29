@@ -1,5 +1,5 @@
-// Play scene
-class Play extends Phaser.Scene {
+// first level scene
+class LevelOne extends Phaser.Scene {
     constructor() {
         super("oneScene")
     }
