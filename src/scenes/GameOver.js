@@ -5,7 +5,7 @@ class Lose extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('loseScreen', './assets/overScreenSun.png');
+        this.load.image('loseScreen', './assets/visual/overScreenSunshine.png');
     }
 
     create() {

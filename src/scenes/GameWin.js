@@ -5,6 +5,16 @@ class Win extends Phaser.Scene {
     }
 
     preload() {
-        // load background and text
+        this.load.image('winScreen', './assets/visual/winScreenSunshine')
+    }
+
+    create() {
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+    }
+
+    update() {
+        if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            this.scene.start('menuScene')
+        }
     }
 }
