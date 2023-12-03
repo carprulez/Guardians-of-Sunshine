@@ -1,7 +1,7 @@
 // Game Win scene
 class Win extends Phaser.Scene {
     constructor() {
-        super("winScene")
+        super('winScene')
     }
 
     preload() {

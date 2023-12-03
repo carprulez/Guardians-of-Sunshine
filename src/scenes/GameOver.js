@@ -1,7 +1,7 @@
 // Game over scene
 class Lose extends Phaser.Scene {
     constructor() {
-        super("loseScene")
+        super('loseScene')
     }
 
     preload() {

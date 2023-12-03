@@ -1,7 +1,7 @@
 // instructions scene
 class Instructions extends Phaser.Scene {
     constructor() {
-        super("instructionsScene")
+        super('instructionsScene')
     }
 
     create() {

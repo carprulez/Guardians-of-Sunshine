@@ -6,7 +6,7 @@ let config = {
     type: Phaser.AUTO,
     width: 840,
     height: 420,
-    scene: [ Menu, Play, Instructions ],
+    scene: [ Menu, Play, Instructions, Loading, Win, Lose ],
     physics: {
         default: 'arcade',
         arcade: {
@@ -24,4 +24,4 @@ let centerX = game.config.width/2;
 let centerY = game.config.height/2;
 let w = game.config.width;
 let h = game.config.height;
-let keyUP, keyDOWN, keyLEFT, keyRIGHT, keySpace;
+let keyUP, keyDOWN, keyLEFT, keyRIGHT, keySPACE;
