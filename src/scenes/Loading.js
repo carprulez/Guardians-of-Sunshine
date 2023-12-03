@@ -16,8 +16,14 @@ class Loading extends Phaser.Scene {
             loadingBar.destroy();
         });
 
+        this.load.path = './assets/';
         // load graphics assets
-
+        this.load.image('background', 'visual/backgroundSun.png');
+        this.load.image('coin', 'visual/coinSun.png');
+        this.load.image('foreground', 'visual/foregroundSun.png');
+        this.load.image('player', 'visual/guardian.png');
+        this.load.image('loseScreen', 'visual/loseScreenSunshine.png');
+        this.load.image('titleScreen', 'visual/titleSun.png');
         // load audio assets
     }
 
