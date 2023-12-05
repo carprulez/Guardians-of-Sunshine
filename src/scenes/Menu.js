@@ -4,12 +4,9 @@ class Menu extends Phaser.Scene {
         super('menuScene')
     }
 
-    preload() {
-        // adding scene art
-        this.load.image('titleScreen', 'visual/titleSun.png');
-    }
-
     create() {
+        // title art
+        this.title = this.add.image(0, 0, 'titleScreen').setOrigin(0);
         // set up RIGHT, DOWN and UP key input detection
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
@@ -24,12 +21,12 @@ class Menu extends Phaser.Scene {
         }
         // check for DOWN input
         if(Phaser.Input.Keyboard.JustDown(keyDOWN)) {
-            this.sound.play('howTo');
+            this.sound.play('change');
             this.scene.start('instructionsScene');
         }
         // check for UP input
         if(Phaser.Input.Keyboard.JustDown(keyUP)) {
-            this.sound.play('credits');
+            this.sound.play('change');
             this.scene.start('creditsScene');
         }
     }
