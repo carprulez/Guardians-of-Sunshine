@@ -17,7 +17,7 @@ class Guardian extends Phaser.Physics.Arcade.Sprite {
             move: new MoveState(),
             attack: new AttackState(),
             jump: new JumpState(),
-        }, [scene, this])               // use this as arguments to keep scene and object context
+        }, [scene, this])                   // use this as arguments to keep scene and object context
     }
 }
 
@@ -30,10 +30,91 @@ class IdleState extends State {
     }
 
     execute(scene, guardian) {
+        // local keyboard
+        const space = scene.SPACE;
+        const left = scene.LEFT;
+        const right = scene.RIGHT;
+        const up = scene.UP;
 
         // transition to punch if pressing space
-        if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            this.stateMachine.transition('punch')
+        if(Phaser.Input.Keyboard.JustDown(space)) {
+            this.stateMachine.transition('attack');
+            return;
         }
+
+        // transition to jump if pressing up
+        if(Phaser.Input.Keyboard.JustDown(up)) {
+            this.stateMachine.transition('jump');
+            return;
+        }
+
+        // transition to move when pressing the arrow keys
+        if(right.isDown || left.isDown) {
+            this.stateMachine.transition('move');
+            return;
+        }
+    }
+}
+
+class MoveState extends State {
+    execute(scene, guardian) {
+        // local copy of keyboard
+        const space = scene.SPACE;
+        const left = scene.LEFT;
+        const right = scene.RIGHT;
+        const up = scene.UP;
+
+        // transition to punch if pressing space
+        if(Phaser.Input.Keyboard.JustDown(space)) {
+            this.stateMachine.transition('attack');
+            return;
+        }
+
+        // transition to jump if pressing up
+        if(Phaser.Input.Keyboard.JustDown(up)) {
+            this.stateMachine.transition('jump');
+            return;
+        }
+        
+        // transition to move when pressing the arrow keys
+        if(!(right.isDown || left.isDown)) {
+            this.stateMachine.transition('idle');
+            return;
+        }
+
+        // handle movement
+        let moveDirection = new Phaser.Math.Vector2(0, 0);
+
+        if(left.isDown) {
+            moveDirection.x = -1;
+            guardian.direction = 'left';
+        } else if(right.isDown) {
+            moveDirection.x = 1;
+            guardian.direction = 'right';
+        }
+
+        // normalize movement vector, update hero position, and play proper animation
+        moveDirection.normalize();
+        hero.setVelocity(guardian.guardianVelocity * moveDirection.x, guardian.guardianVelocity * moveDirection.y);
+        guardian.anims.play(`walk-${guardian.direction}`, true);
+    }
+}
+
+class AttackState extends State {
+    enter(scene, guardian) {
+        guardian.setVelocity(0)
+        guardian.anims.play(`punch-${guardian.direction}`)
+        guardian.once('animationcomplete', () => {
+            this.stateMachine.transition('idle')
+        })
+    }
+}
+
+class JumpState extends State {
+    enter(scene, guardian) {
+        guardian.anims.play(`jump-${guardian.direction}`)
+        guardian.once('animationcomplete', () => {
+            this.stateMachine.transition('idle')
+        })
     }
 }
