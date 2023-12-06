@@ -20,3 +20,20 @@ class Guardian extends Phaser.Physics.Arcade.Sprite {
         }, [scene, this])               // use this as arguments to keep scene and object context
     }
 }
+
+// guardian-specific state
+class IdleState extends State {
+    enter(scene, guardian) {
+        guardian.setVelocity(0);
+        guardian.anims.play(`walk-${guardian.direction}`);
+        guardian.anims.stop();
+    }
+
+    execute(scene, guardian) {
+
+        // transition to punch if pressing space
+        if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            this.stateMachine.transition('punch')
+        }
+    }
+}

@@ -4,10 +4,6 @@ class Win extends Phaser.Scene {
         super('winScene')
     }
 
-    preload() {
-        this.load.image('winScreen', './assets/visual/winScreenSunshine.png')
-    }
-
     create() {
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
