@@ -26,9 +26,7 @@ class IdleState extends State {
     enter(scene, guardian) {
         guardian.setVelocity(0);
         const walk = `walk-${guardian.direction}`;
-        if (guardian.anims.exists(walk)) {
-            guardian.anims.play(walk);
-        }
+        guardian.anims.play(walk);
     }
 
     execute(scene, guardian) {
@@ -104,19 +102,24 @@ class MoveState extends State {
 
 class AttackState extends State {
     enter(scene, guardian) {
-        guardian.setVelocity(0)
-        guardian.anims.play(`punch-${guardian.direction}`)
+        guardian.setVelocity(0);
+        guardian.anims.play(`punch-${guardian.direction}`);
         guardian.once('animationcomplete', () => {
-            this.stateMachine.transition('idle')
-        })
+            this.stateMachine.transition('idle');
+        });
     }
 }
 
 class JumpState extends State {
     enter(scene, guardian) {
-        guardian.anims.play(`jump-${guardian.direction}`)
-        guardian.once('animationcomplete', () => {
-            this.stateMachine.transition('idle')
-        })
+        guardian.setVelocityY(-300);
+        guardian.anims.play(`jump-${guardian.direction}`);
+    }
+
+    execute(scene, guardian) {
+        let collides = guardian.body.touching;
+        if(collides.down == true) {
+            this.stateMachine.transition('idle');
+        }
     }
 }

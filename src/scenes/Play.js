@@ -13,6 +13,7 @@ class Play extends Phaser.Scene {
         // add Guardian to scene and give it gravity
         this.guardian = new Guardian(this, 50, centerY, 'guardian', 0, 'right');
         this.guardian.setGravityY(300);
+        this.guardian.body.setSize(this.guardian.width / 2, this.guardian.height - 5)
 
         // set up camera
         this.cameras.main.setBounds(0, 0, this.background.width, this.background.height);
