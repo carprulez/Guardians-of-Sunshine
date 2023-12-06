@@ -39,7 +39,7 @@ class Loading extends Phaser.Scene {
         this.load.image('bunny', 'visual/bunny.png');
         this.load.image('bee', 'visual/bee.png');
         this.load.image('frog', 'visual/frog.png');
-        this.load.spritesheet('guardian', 'guardianAnims.png', {
+        this.load.spritesheet('guardian', 'visual/guardianAnims.png', {
             frameWidth: 32,
             frameHeight: 32,
         })
@@ -47,6 +47,7 @@ class Loading extends Phaser.Scene {
         this.load.audio('change', 'audio/changeScene.wav');
         this.load.audio('startGame', 'audio/startGame.wav');
         this.load.audio('coinPickup', 'audio/coinPickup.wav');
+        this.load.audio('landing', 'audio/landing.wav');
     }
 
     create() {
@@ -55,6 +56,7 @@ class Loading extends Phaser.Scene {
             key: 'walk-right',
             frameRate: 8,
             repeat: 0,
+            duration: 500,
             frames: this.anims.generateFrameNumbers('guardian', { start: 0, end: 1 }),
         })
 
@@ -62,6 +64,7 @@ class Loading extends Phaser.Scene {
             key: 'walk-left',
             frameRate: 8,
             repeat: 0,
+            duration: 500,
             frames: this.anims.generateFrameNumbers('guardian', { start: 3, end: 4 }),
         })
 
@@ -70,14 +73,20 @@ class Loading extends Phaser.Scene {
             key: 'punch-right',
             frameRate: 8,
             repeat: 0,
-            frames: this.anims.generateFrameNumbers('guardian', { start: 0, end: 2 }),
+            duration: 1000,
+            frames: this.anims.generateFrameNumbers('guardian', {
+                frames: [0, 2, 0]
+            }),
         })
 
         this.anims.create({
             key: 'punch-left',
             frameRate: 8,
             repeat: 0,
-            frames: this.anims.generateFrameNumbers('guardian', { start: 3, end: 5 }),
+            duration: 1000,
+            frames: this.anims.generateFrameNumbers('guardian', { 
+                frames: [3, 5, 3] 
+            }),
         })
 
         // Guardian animations (jumping)
@@ -85,14 +94,20 @@ class Loading extends Phaser.Scene {
             key: 'jump-right',
             frameRate: 8,
             repeat: 0,
-            frames: this.anims.generateFrameNumbers('guardian', { start: 0, end: 6 }),
+            duration: 4000,
+            frames: this.anims.generateFrameNumbers('guardian', { 
+                frames: [0, 6, 0] 
+            }),
         })
 
         this.anims.create({
-            key: 'jump-right',
+            key: 'jump-left',
             frameRate: 8,
             repeat: 0,
-            frames: this.anims.generateFrameNumbers('guardian', { start: 0, end: 7 }),
+            duration: 4000,
+            frames: this.anims.generateFrameNumbers('guardian', { 
+                frames: [3, 7, 3]
+            }),
         })
 
         // go to title screen

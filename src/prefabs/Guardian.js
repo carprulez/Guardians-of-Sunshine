@@ -25,16 +25,18 @@ class Guardian extends Phaser.Physics.Arcade.Sprite {
 class IdleState extends State {
     enter(scene, guardian) {
         guardian.setVelocity(0);
-        guardian.anims.play(`walk-${guardian.direction}`);
-        guardian.anims.stop();
+        const walk = `walk-${guardian.direction}`;
+        if (guardian.anims.exists(walk)) {
+            guardian.anims.play(walk);
+        }
     }
 
     execute(scene, guardian) {
         // local keyboard
-        const space = scene.SPACE;
-        const left = scene.LEFT;
-        const right = scene.RIGHT;
-        const up = scene.UP;
+        const space = scene.keySPACE;
+        const left = scene.keyLEFT;
+        const right = scene.keyRIGHT;
+        const up = scene.keyUP;
 
         // transition to punch if pressing space
         if(Phaser.Input.Keyboard.JustDown(space)) {
@@ -59,10 +61,10 @@ class IdleState extends State {
 class MoveState extends State {
     execute(scene, guardian) {
         // local copy of keyboard
-        const space = scene.SPACE;
-        const left = scene.LEFT;
-        const right = scene.RIGHT;
-        const up = scene.UP;
+        const space = scene.keySPACE;
+        const left = scene.keyLEFT;
+        const right = scene.keyRIGHT;
+        const up = scene.keyUP;
 
         // transition to punch if pressing space
         if(Phaser.Input.Keyboard.JustDown(space)) {
@@ -95,7 +97,7 @@ class MoveState extends State {
 
         // normalize movement vector, update hero position, and play proper animation
         moveDirection.normalize();
-        hero.setVelocity(guardian.guardianVelocity * moveDirection.x, guardian.guardianVelocity * moveDirection.y);
+        guardian.setVelocity(guardian.guardianVelocity * moveDirection.x, guardian.guardianVelocity * moveDirection.y);
         guardian.anims.play(`walk-${guardian.direction}`, true);
     }
 }
