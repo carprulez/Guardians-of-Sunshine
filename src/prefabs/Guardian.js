@@ -5,6 +5,7 @@ class Guardian extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);           // add Guardian to existing scene
         scene.physics.add.existing(this);   // add physics body to scene
 
+        // add world bound collision
         this.body.setCollideWorldBounds(true);
 
         // set Guardian properties
@@ -21,7 +22,7 @@ class Guardian extends Phaser.Physics.Arcade.Sprite {
     }
 }
 
-// guardian-specific state
+// guardian-specific states
 class IdleState extends State {
     enter(scene, guardian) {
         guardian.setVelocity(0);
@@ -114,11 +115,13 @@ class JumpState extends State {
     enter(scene, guardian) {
         guardian.setVelocityY(-300);
         guardian.anims.play(`jump-${guardian.direction}`);
+        scene.sound.play('jumping');
     }
 
     execute(scene, guardian) {
         let collides = guardian.body.touching;
         if(collides.down == true) {
+            scene.sound.play('landing');
             this.stateMachine.transition('idle');
         }
     }

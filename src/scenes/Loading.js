@@ -48,6 +48,7 @@ class Loading extends Phaser.Scene {
         this.load.audio('startGame', 'audio/startGame.wav');
         this.load.audio('coinPickup', 'audio/coinPickup.wav');
         this.load.audio('landing', 'audio/landing.wav');
+        this.load.audio('jumping', 'audio/jumping.wav');
     }
 
     create() {

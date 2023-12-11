@@ -4,6 +4,7 @@
 
 let config = {
     type: Phaser.AUTO,
+    autoCenter: true,
     width: 840,
     height: 420,
     scene: [ Loading, Menu, Credits, Play, Instructions, Win, Lose ],

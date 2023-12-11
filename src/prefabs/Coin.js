@@ -1,6 +1,6 @@
 // Coin prefab
 class Coin extends Phaser.Physics.Arcade.Sprite {
-    constructor() {
-        
+    constructor(scene, x, y, texture) {
+        super(scene, x, y, texture)
     }
 }
