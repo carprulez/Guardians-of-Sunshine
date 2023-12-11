@@ -23,7 +23,7 @@ class Loading extends Phaser.Scene {
         // load graphics assets
         // win and lose
         this.load.image('loseScreen', 'visual/loseScreenSun.png');
-        this.load.image('winScreen', 'visual/winScreenSunshine.png')
+        this.load.image('winScreen', 'visual/winScreenSun.png')
         // how to art
         this.load.image('instructions', 'visual/instructionsSun.png');
         // background and foreground of play scene

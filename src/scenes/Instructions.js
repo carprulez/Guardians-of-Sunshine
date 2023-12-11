@@ -18,6 +18,7 @@ class Instructions extends Phaser.Scene {
         this.add.text(centerX, h - 15, 'Use UP to go back to menu', textConfig).setOrigin(0.5);
         // set up UP input detection
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     }
 
     update() {
@@ -25,6 +26,6 @@ class Instructions extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(keyUP)) {
             this.sound.play('change');
             this.scene.start('menuScene');
-        }
+        }   
     }
 }
