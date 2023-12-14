@@ -5,9 +5,6 @@ class Guardian extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);           // add Guardian to existing scene
         scene.physics.add.existing(this);   // add physics body to scene
 
-        // add world bound collision
-        this.body.setCollideWorldBounds(true);
-
         // set Guardian properties
         this.direction = direction;
         this.guardianVelocity = 100 // in pixels
@@ -121,7 +118,6 @@ class JumpState extends State {
     execute(scene, guardian) {
         let colliding = guardian.body.touching;
         if(colliding.down == true) {
-            scene.sound.play('landing');
             this.stateMachine.transition('idle');
         }
     }

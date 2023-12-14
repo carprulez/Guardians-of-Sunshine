@@ -9,6 +9,9 @@ class Play extends Phaser.Scene {
         const level = this.add.tilemap('tilemapJSON');
         const tileset = level.addTilesetImage('tilesetSun', 'tilesetImage');
 
+        // game over flag
+        this.gameOver = false;
+
         // adding layers
         const bgLayer = level.createLayer('Background', tileset, 0, 0);
         const bgLayer2 = level.createLayer('Second Background', tileset, 0, 0);
@@ -16,7 +19,7 @@ class Play extends Phaser.Scene {
         const coinLayer = level.createLayer('Coins', tileset, 0, 0);
 
         // add Guardian to scene and give it gravity and hitbox
-        this.guardian = new Guardian(this, 50, centerY + 136, 'guardian', 0, 'right');
+        this.guardian = new Guardian(this, 50, centerY + 130, 'guardian', 0, 'right');
         this.guardian.setGravityY(300);
         this.guardian.body.setSize(this.guardian.width / 2, this.guardian.height - 5);
 
@@ -30,8 +33,9 @@ class Play extends Phaser.Scene {
         groundLayer.setCollisionByProperty({
             collides: true
         })
-
-        this.physics.add.collider(this.guardian, groundLayer);
+        this.physics.world.enable(groundLayer);
+        this.physics.add.collider(this.guardian, groundLayer, () => {
+        });
 
         // coins
         coinLayer.setCollisionByProperty({
@@ -52,11 +56,15 @@ class Play extends Phaser.Scene {
         // update state machine
         this.guardianFSM.step();
 
-        // detect hitting bottom of world bound
+        // adding world bound kill
         if(this.guardian.y > 420) {
-            this.guardian.destroy();
             this.sound.play('death');
-            this.start.scene('loseScene');
+            this.guardian.destroy();
+            this.gameOver = true;
+        }
+        // switch to game over scene
+        if(this.gameOver == true) {
+            this.scene.start('loseScene');
         }
     }
 }

@@ -36,9 +36,9 @@ class Loading extends Phaser.Scene {
         // anims and sprites
         this.load.image('coin', 'visual/coinSun.png');
         this.load.image('player', 'visual/guardian.png');
-        this.load.image('bunny', 'visual/bunny.png');
-        this.load.image('bee', 'visual/bee.png');
-        this.load.image('frog', 'visual/frog.png');
+        this.load.image('bunny', 'visual/bunnySun.png');
+        this.load.image('bee', 'visual/beeSun.png');
+        this.load.image('frog', 'visual/frogSun.png');
         this.load.spritesheet('guardian', 'visual/guardianAnims.png', {
             frameWidth: 32,
             frameHeight: 32,
@@ -48,7 +48,6 @@ class Loading extends Phaser.Scene {
         this.load.audio('change', 'audio/changeScene.wav');
         this.load.audio('startGame', 'audio/startGame.wav');
         this.load.audio('coinPickup', 'audio/coinPickup.wav');
-        this.load.audio('landing', 'audio/landing.wav');
         this.load.audio('jumping', 'audio/jumping.wav');
     }
 
