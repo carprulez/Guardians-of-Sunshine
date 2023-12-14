@@ -56,6 +56,11 @@ class Play extends Phaser.Scene {
         // update state machine
         this.guardianFSM.step();
 
+        // adding win condition
+        if(this.guardian.x > 3360) {
+            this.scene.start('winScene');
+        }
+
         // adding world bound kill
         if(this.guardian.y > 420) {
             this.sound.play('death');
