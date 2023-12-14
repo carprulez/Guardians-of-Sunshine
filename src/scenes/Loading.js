@@ -21,14 +21,14 @@ class Loading extends Phaser.Scene {
 
         this.load.path = './assets/';
         // load graphics assets
+        // loading tilemap
+        this.load.image('tilesetImage', 'visual/tilesetSun.png');
+        this.load.tilemapTiledJSON('tilemapJSON', 'visual/level.json');
         // win and lose
         this.load.image('loseScreen', 'visual/loseScreenSun.png');
         this.load.image('winScreen', 'visual/winScreenSun.png')
         // how to art
         this.load.image('instructions', 'visual/instructionsSun.png');
-        // background and foreground of play scene
-        this.load.image('background', 'visual/backgroundSun.png');
-        this.load.image('foreground', 'visual/foregroundSun.png');
         // title screen art
         this.load.image('titleScreen', 'visual/titleSun.png');
         // credits art
@@ -44,6 +44,7 @@ class Loading extends Phaser.Scene {
             frameHeight: 32,
         })
         // load audio assets
+        this.load.audio('death', 'audio/death.wav');
         this.load.audio('change', 'audio/changeScene.wav');
         this.load.audio('startGame', 'audio/startGame.wav');
         this.load.audio('coinPickup', 'audio/coinPickup.wav');

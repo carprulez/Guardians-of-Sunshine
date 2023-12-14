@@ -119,8 +119,8 @@ class JumpState extends State {
     }
 
     execute(scene, guardian) {
-        let collides = guardian.body.touching;
-        if(collides.down == true) {
+        let colliding = guardian.body.touching;
+        if(colliding.down == true) {
             scene.sound.play('landing');
             this.stateMachine.transition('idle');
         }
