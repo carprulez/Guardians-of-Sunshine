@@ -23,6 +23,10 @@ class Play extends Phaser.Scene {
         this.guardian.setGravityY(300);
         this.guardian.body.setSize(this.guardian.width / 2, this.guardian.height - 5);
 
+        this.bee = new Bee(this, 850, centerY + 75, 'bee');
+        this.bunny = new Bunny(this, 2050, centerY + 127, 'bunny');
+        this.frog = new Frog(this, 3050, centerY + 127, 'frog');
+
         // set up camera
         this.cameras.main.setBounds(0, 0, level.widthInPixels, level.heightInPixels);
         this.cameras.main.startFollow(this.guardian, false, 0.5, 0.5);
@@ -34,6 +38,9 @@ class Play extends Phaser.Scene {
             collides: true
         })
         this.physics.add.collider(this.guardian, groundLayer);
+        this.physics.add.collider(this.bee, groundLayer);
+        this.physics.add.collider(this.bunny, groundLayer);
+        this.physics.add.collider(this.frog, groundLayer);
 
         // coins
         this.coinLayer.setCollisionByProperty({
@@ -43,6 +50,20 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.guardian, this.coinLayer, (guardian, coin) => {
             this.coinLayer.removeTileAt(coin.x, coin.y);
             this.sound.play('coinPickup');
+        });
+
+        // bosses
+        this.physics.add.collider(this.guardian, this.bee, (guardian, bee) => {
+            bee.destroy();
+            this.sound.play('bossDeath');
+        });
+        this.physics.add.collider(this.guardian, this.bunny, (guardian, bunny) => {
+            bunny.destroy();
+            this.sound.play('bossDeath');
+        });
+        this.physics.add.collider(this.guardian, this.frog, (guardian, frog) => {
+            frog.destroy();
+            this.sound.play('bossDeath');
         });
 
         // adding key inputs

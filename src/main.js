@@ -1,6 +1,6 @@
 // Carter Gruebel
 // Guardians of Sunshine
-// Major components: Particle effects, arcade physics, text objects, animation manager, cameras
+// Major components: Tilemap, arcade physics, text objects, animation manager, cameras
 
 let config = {
     type: Phaser.AUTO,
@@ -11,7 +11,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true
+            debug: false
         }
     },
     render: { 

@@ -34,7 +34,6 @@ class Loading extends Phaser.Scene {
         // credits art
         this.load.image('credits', 'visual/creditsSun.png');
         // anims and sprites
-        this.load.image('coin', 'visual/coinSun.png');
         this.load.image('player', 'visual/guardian.png');
         this.load.image('bunny', 'visual/bunnySun.png');
         this.load.image('bee', 'visual/beeSun.png');
@@ -49,6 +48,7 @@ class Loading extends Phaser.Scene {
         this.load.audio('startGame', 'audio/startGame.wav');
         this.load.audio('coinPickup', 'audio/coinPickup.wav');
         this.load.audio('jumping', 'audio/jumping.wav');
+        this.load.audio('bossDeath', 'audio/bossDeath.wav');
     }
 
     create() {

@@ -5,7 +5,8 @@ class Win extends Phaser.Scene {
     }
 
     create() {
-        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        // adding art
+        this.win = this.add.image(0, 0, 'winScreen').setOrigin(0);
 
         // adding text to get back to menu
         let textConfig = {
