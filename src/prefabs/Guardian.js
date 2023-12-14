@@ -116,9 +116,11 @@ class JumpState extends State {
     }
 
     execute(scene, guardian) {
-        let colliding = guardian.body.touching;
-        if(colliding.down == true) {
+        if (guardian.body.onFloor() && !this.hasCollidedWithFloor) {
+            this.hasCollidedWithFloor = true;
             this.stateMachine.transition('idle');
+        } else if (!guardian.body.onFloor()) {
+            this.hasCollidedWithFloor = false;
         }
     }
 }

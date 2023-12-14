@@ -16,10 +16,10 @@ class Play extends Phaser.Scene {
         const bgLayer = level.createLayer('Background', tileset, 0, 0);
         const bgLayer2 = level.createLayer('Second Background', tileset, 0, 0);
         const groundLayer = level.createLayer('Ground', tileset, 0, 0);
-        const coinLayer = level.createLayer('Coins', tileset, 0, 0);
+        this.coinLayer = level.createLayer('Coins', tileset, 0, 0);
 
         // add Guardian to scene and give it gravity and hitbox
-        this.guardian = new Guardian(this, 50, centerY + 130, 'guardian', 0, 'right');
+        this.guardian = new Guardian(this, 50, centerY + 127, 'guardian', 0, 'right');
         this.guardian.setGravityY(300);
         this.guardian.body.setSize(this.guardian.width / 2, this.guardian.height - 5);
 
@@ -33,18 +33,18 @@ class Play extends Phaser.Scene {
         groundLayer.setCollisionByProperty({
             collides: true
         })
-        this.physics.world.enable(groundLayer);
-        this.physics.add.collider(this.guardian, groundLayer, () => {
-        });
+        this.physics.add.collider(this.guardian, groundLayer);
 
         // coins
-        coinLayer.setCollisionByProperty({
+        this.coinLayer.setCollisionByProperty({
             collides: true
         })
 
-        this.physics.add.collider(this.guardian, coinLayer);
+        this.physics.add.collider(this.guardian, this.coinLayer, (guardian, coin) => {
+            this.coinLayer.removeTileAt(coin.x, coin.y);
+            this.sound.play('coinPickup');
+        });
 
-        
         // adding key inputs
         this.keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         this.keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
