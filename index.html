@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This title is used for tabs and bookmarks -->
     <title>Guardians of Sunshine</title>
-    <style>
-        body {
-            background-color: rgb(94, 167, 151);
-        }
-    </style>
-</head>
-<body>
+
+    <!-- Use UTF character set -->
+    <meta charset="UTF-8" />
+    <!-- Set viewport so page remains consistently scaled -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Include CSS files (site-wide and project-specific) -->
+    <link rel="stylesheet" type="text/css" href="../css/site.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- Load jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+
+    <style> body { background-color: #6CB8AF; } </style>
+
+    <!-- Phaser and game scripts -->
     <script src="./lib/phaser.js"></script>
     <script src="./lib/StateMachine.js"></script>
     <script src="./src/prefabs/Bee.js"></script>
@@ -25,5 +35,42 @@
     <script src="./src/scenes/GameOver.js"></script>
     <script src="./src/scenes/Loading.js"></script>
     <script src="./src/main.js"></script>
+</head>
+<body>
+    <!-- Page content with shared formatting -->
+    <main id="content">
+        <section>
+
+            <h1>Guardians of Sunshine</h1>
+
+            <div class="minor-section">
+                <h2>Play Game</h2>
+                <p>Click below to launch Guardians of Sunshine.</p>
+                <div id="game-container"></div>
+            </div>
+
+            <div class="minor-section">
+                <h2>Description</h2>
+                <p>A Phaser-based game where players take on the role of guardians protecting their world.</p>
+            </div>
+
+            <div class="minor-section">
+                <h2>Technical</h2>
+                <p>Built with Phaser, this project uses multiple game states, prefab entities, and custom state machines.</p>
+            </div>
+
+            <div class="minor-section">
+                <h2>Reflection</h2>
+                <p>This project helped me explore game architecture in Phaser, state management, and sprite-based design.</p>
+            </div>
+
+        </section>
+
+        <nav id="links" class="minor-section">
+            <ul>
+                <li><a href="https://carprulez.github.io/portfolio/">Home</a></li>
+            </ul>
+        </nav>
+    </main>
 </body>
 </html>
